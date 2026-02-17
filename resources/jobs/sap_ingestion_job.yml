@@ -1,0 +1,24 @@
+resources:
+  jobs:
+    sap_bronze_job:
+      name: "sap_bronze_job"
+
+      tasks:
+        - task_key: run_sap_bronze_pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.sap_bronze_pipeline.id}
+
+      schedule:
+        quartz_cron_expression: "0 0 2 * * ?"
+        timezone_id: "Asia/Kolkata"
+        pause_status: "UNPAUSED"
+
+      max_concurrent_runs: 1
+
+      email_notifications:
+        on_failure:
+          - "antony@diggibyte.com"
+
+      notification_settings:
+        no_alert_for_skipped_runs: true
+        no_alert_for_canceled_runs: true
