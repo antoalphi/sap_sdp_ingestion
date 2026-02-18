@@ -1,7 +1,7 @@
 # This is a Databricks asset bundle definition for sap_sdp_ingestion.
 # See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
 bundle:
-  name: sap_sdp_ingestion
+  name: Finance_SAP_dim_daily_load
   uuid: 24401583-9958-4b55-a4c6-28c4d4aa3033
 
 include:
@@ -14,29 +14,30 @@ variables:
     description: The catalog to use
   schema:
     description: The schema to use
+  job_pause_status:
+    description: Pause status for job schedule
 
 targets:
   dev:
-    # The default target uses 'mode: development' to create a development copy.
-    # - Deployed resources get prefixed with '[dev my_user_name]'
-    # - Any job schedules and triggers are paused by default.
-    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
-    mode: development
+    mode: production
     default: true
     workspace:
       host: https://adb-7488500312027058.18.azuredatabricks.net
+      root_path: /Workspace/Users/antony@diggibyte.com/.bundle/${bundle.name}/${bundle.target}
     variables:
       catalog: data_engineering_workshop
-      schema: dev
+      schema: finance_dim_sap_bronze
+      job_pause_status: "PAUSED"
+
   prod:
     mode: production
     workspace:
       host: https://adb-7488500312027058.18.azuredatabricks.net
-      # We explicitly deploy to /Workspace/Users/antony@diggibyte.com to make sure we only have a single copy.
       root_path: /Workspace/Users/antony@diggibyte.com/.bundle/${bundle.name}/${bundle.target}
     variables:
       catalog: data_engineering_workshop
-      schema: prod
+      schema: finance_dim_sap_bronze
+      job_pause_status: "UNPAUSED"
     permissions:
       - user_name: antony@diggibyte.com
         level: CAN_MANAGE

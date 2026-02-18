@@ -1,6 +1,6 @@
 from databricks.sdk.runtime import spark
 from pyspark.sql import DataFrame
-from sap_sdp_ingestion import taxis
+from finance_sap_dim_daily_load import taxis
 
 
 def test_find_all_taxis():

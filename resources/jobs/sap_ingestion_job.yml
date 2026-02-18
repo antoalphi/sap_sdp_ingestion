@@ -1,17 +1,17 @@
 resources:
   jobs:
-    sap_bronze_job:
-      name: "sap_bronze_job"
+    finance_SAP_dim_daily_load:
+      name: "finance_SAP_dim_daily_load"
 
       tasks:
-        - task_key: run_sap_bronze_pipeline
+        - task_key: finance_SAP_dim_daily_load
           pipeline_task:
-            pipeline_id: ${resources.pipelines.sap_bronze_pipeline.id}
+            pipeline_id: ${resources.pipelines.finance_SAP_dim_daily_load_pipeline.id}
 
       schedule:
         quartz_cron_expression: "0 0 2 * * ?"
         timezone_id: "Asia/Kolkata"
-        pause_status: "UNPAUSED"
+        pause_status: ${var.job_pause_status}
 
       max_concurrent_runs: 1
 

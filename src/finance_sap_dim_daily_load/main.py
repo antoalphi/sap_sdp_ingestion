@@ -1,6 +1,6 @@
 import argparse
 from databricks.sdk.runtime import spark
-from sap_sdp_ingestion import taxis
+from finance_sap_dim_daily_load import taxis
 
 
 def main():

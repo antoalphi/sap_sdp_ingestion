@@ -8,16 +8,14 @@ class SapSDPIngestionConfig:
     landing_path: str
     checkpoint_path: str
     schema_location: str
-    max_files_per_trigger: int
 
 
 def get_config(spark):
-    catalog = spark.conf.get("sap_sdp_ingestion.catalog")
-    schema_bronze = spark.conf.get("sap_sdp_ingestion.schema.bronze")
-    landing_path = spark.conf.get("sap_sdp_ingestion.adls.landing.path")
-    checkpoint_path = spark.conf.get("sap_sdp_ingestion.checkpoint.path")
-    schema_location = spark.conf.get("sap_sdp_ingestion.schema_path")
-    max_files_per_trigger = spark.conf.get("sap_sdp_ingestion.max_files_per_trigger")
+    catalog = spark.conf.get("finance_SAP_dim.catalog")
+    schema_bronze = spark.conf.get("finance_SAP_dim.schema.bronze")
+    landing_path = spark.conf.get("finance_SAP_dim.adls.landing.path")
+    checkpoint_path = spark.conf.get("finance_SAP_dim.checkpoint.path")
+    schema_location = spark.conf.get("finance_SAP_dim.schema_path")
 
     return SapSDPIngestionConfig(
         catalog=catalog,
@@ -25,5 +23,4 @@ def get_config(spark):
         landing_path=landing_path,
         checkpoint_path=checkpoint_path,
         schema_location=schema_location,
-        max_files_per_trigger=max_files_per_trigger,
     )

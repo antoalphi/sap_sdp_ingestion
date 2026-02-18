@@ -5,7 +5,7 @@ variables:
 
   schema_bronze:
     description: "Bronze schema name"
-    default: "sap_bronze"
+    default: "finance_dim_sap_bronze"
 
   adls_landing_path:
     description: "ADLS Gen2 Landing path"
@@ -18,7 +18,3 @@ variables:
   schema_path:
     description: "Schema path for streaming ingestion"
     default: "abfss://sap-ingestion@dbxucst.dfs.core.windows.net/schema"
-
-  max_files_per_trigger:
-    description: "Auto Loader max files per trigger"
-    default: 1000
